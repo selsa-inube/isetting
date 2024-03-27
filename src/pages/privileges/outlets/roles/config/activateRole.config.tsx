@@ -2,49 +2,45 @@ import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 
 import { EAppearance } from "@src/types/colors.types";
 
-import { IGeneralInformationEntry } from "../types/forms.types";
-
-const activateUserModal = {
+const activateRoleModal = {
   activation: {
     title: "Activate",
     description: (id: string) =>
-      `Esta seguro de activar el usuario con id ${id}? `,
+      `Esta seguro de activar el rol con código ${id}? `,
     textAction: "Activate",
     appearance: EAppearance.SUCCESS,
   },
   deactivation: {
     title: "Deactivate",
     description: (id: string) =>
-      `Esta seguro de desactivar el usuario con id ${id}? `,
+      `Esta seguro de desactivar el rol con código ${id}? `,
     textAction: "Deactivate",
     appearance: EAppearance.ERROR,
   },
 };
 
-const activateUserMessages = {
+const activateRoleMessages = {
   activation: {
     id: 1,
     icon: <MdThumbUpOffAlt size={18} />,
     title: "¡Activación exitosa!",
-    description: ({ username }: IGeneralInformationEntry) =>
-      `El Usuario ${username} esta activado `,
+    description: (n_Rol: string) => `El Usuario ${n_Rol} esta activado `,
     appearance: EAppearance.SUCCESS,
   },
   deactivation: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Desactivación exitosa!",
-    description: ({ username }: IGeneralInformationEntry) =>
-      `El Usuario ${username} esta desactivado `,
+    description: (n_Rol: string) => `El Usuario ${n_Rol} esta desactivado `,
     appearance: EAppearance.SUCCESS,
   },
   failed: {
     id: 2,
     icon: <MdErrorOutline size={18} />,
     title: "¡Uy, algo salió mal!",
-    description: ({ code }: IGeneralInformationEntry) =>
-      `Hemos presentado problemas eliminando al usuario ${code}.`,
+    description: (n_Rol: string) =>
+      `Hemos presentado problemas eliminando al rol ${n_Rol}.`,
     appearance: EAppearance.ERROR,
   },
 };
-export { activateUserMessages, activateUserModal };
+export { activateRoleMessages, activateRoleModal };

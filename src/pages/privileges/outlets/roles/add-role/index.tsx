@@ -77,8 +77,8 @@ export function AddRol() {
         businessRules: {
           values: dataToAssignmentFormEntry({
             dataOptions: linixRolesFetch as Record<string, unknown>[],
-            idLabel: "k_rol",
-            valueLabel: "n_rol",
+            idLabel: "k_Rol",
+            valueLabel: "n_Rol",
             isActiveLabel: "asignado",
           }),
         },

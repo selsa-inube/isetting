@@ -16,7 +16,7 @@ interface IGeneralInformationEntry {
   status?: string;
   code?: string;
   position?: string;
-  active?: boolean;
+  active: boolean;
 }
 
 interface IFormsInvitation {

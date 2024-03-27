@@ -1,23 +1,26 @@
+import { useState } from "react";
 import {
   Table,
   useMediaQuery,
   SectionMessage,
   Stack,
 } from "@inube/design-system";
+
 import { userEntriesDataMock } from "@mocks/apps/privileges/users/users.mock";
-import { useState } from "react";
-import { activateUserMessages } from "../../config/activateUser.config";
-import { deleteUserMessages } from "../../config/deleteUser.config";
 import {
   usersBreakPointsConfig,
   usersTitlesConfig,
-} from "../../config/usersTable.config";
-import { ActivateUser } from "./ActivateUser";
-import { DeleteUser } from "./DeleteUser";
-import { EditUser } from "./EditUser";
-import { IGeneralInformationEntry } from "../../types/forms.types";
+} from "@pages/privileges/outlets/users/config/usersTable.config";
+import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
+import { deleteUserMessages } from "@pages/privileges/outlets/users/config/deleteUser.config";
+import { activateUserMessages } from "@pages/privileges/outlets/users/config/activateUser.config";
+import { activateUserModal } from "@pages/privileges/outlets/users/config/activateUser.config";
+import { IGeneralInformationEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { EAppearance } from "@src/types/colors.types";
 import { EMessageType, IMessage } from "@src/types/messages.types";
+
+import { EditUser } from "./EditUser";
+import { DeleteUser } from "./DeleteUser";
 import { StyledMessageContainer } from "./styles";
 
 const initialMessageState: IMessage = {
@@ -111,10 +114,11 @@ function UsersTab(props: UsersTabProps) {
       id: "1",
       actionName: "Activar",
       content: (user: IGeneralInformationEntry) => (
-        <ActivateUser
-          user={user}
-          handleActivateUser={() => handleActivateUser(user)}
+        <ActivateFormOptions<IGeneralInformationEntry>
+          data={user}
+          handleActivate={() => handleActivateUser(user)}
           showComplete={smallScreen}
+          activateModalConfig={activateUserModal}
         />
       ),
       type: "gray",

@@ -2,27 +2,28 @@ import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
 import { Icon } from "@inube/design-system";
 
-import { roles } from "@mocks/privileges/roles/Roles.mock";
+import { mockRoles } from "@mocks/privileges/roles/Roles.mock";
+import { ActivateFormOptions } from "@pages/privileges/outlets/forms/ActivateFormOptions";
 import { DeleteUser } from "@pages/privileges/outlets/users/tabs/users/DeleteUser";
-import { ActivateUser } from "@pages/privileges/outlets/users/tabs/users/ActivateUser";
 
 import { DetailsModal } from "../components/DetailsModal";
+import { activateRoleModal } from "./activateRole.config";
 
 export const titlesOptions = [
   {
-    id: "k_rol",
+    id: "k_Rol",
     titleName: "Code",
     priority: 0,
   },
 
   {
-    id: "n_rol",
+    id: "n_Rol",
     titleName: "Nombre",
     priority: 1,
   },
 
   {
-    id: "k_aplica",
+    id: "n_Uso",
     titleName: "Aplicación",
     priority: 2,
   },
@@ -37,26 +38,44 @@ export const RolesBreakPointsConfig = [
   { breakpoint: "(max-width: 360px)", totalColumns: 1 },
 ];
 
-const dataDetailsRol = (id: string) => {
-  const data = [roles.find((role) => role.id === id)!].map((roleselectd) => ({
-    Código: roleselectd?.k_rol,
-    Nombre: roleselectd?.n_rol,
-    Aplicación: roleselectd?.k_aplica,
-    Activo: roleselectd?.i_activo ? "Si" : "No",
-  }));
+const dataDetailsRol = (k_Rol: string) => {
+  const data = [mockRoles.find((role) => role.k_Rol === k_Rol)!].map(
+    (roleselectd) => ({
+      Código: roleselectd?.k_Rol,
+      Nombre: roleselectd?.n_Rol,
+      Aplicación: roleselectd?.n_Uso,
+      Activo: roleselectd?.i_Activo === "Y" ? "active" : "inactive",
+    })
+  );
 
   return [...data].shift();
 };
 
-const selectedData = (id: string) => roles.find((role) => role.id === id);
+const selectedData = (k_Rol: string) =>
+  mockRoles.find((role) => role.k_Rol === k_Rol);
+
+const handleActive = () => "Esto es un servicio de Backend";
 
 export const actionsConfig = [
   {
     id: "i_activo",
     actionName: "Activo",
-    content: ({ id }: { id: string }) => (
-      <ActivateUser user={selectedData(id)} />
-    ),
+    content: ({ k_Rol }: { k_Rol: string }) => {
+      const role = selectedData(k_Rol);
+      const adjustedRole = {
+        id: role?.k_Rol || "",
+        active: role?.i_Activo === "Y" || false,
+      };
+
+      return (
+        <ActivateFormOptions
+          handleActivate={() => handleActive()}
+          data={adjustedRole}
+          showComplete={false}
+          activateModalConfig={activateRoleModal}
+        />
+      );
+    },
     type: "secondary",
   },
   {
