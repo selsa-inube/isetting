@@ -15,7 +15,6 @@ interface IGeneralInformationFormProps {
   initialValues: IGeneralInformationForm;
   onSubmit?: (values: IGeneralInformationForm) => void;
   loading?: boolean;
-  handleSubmit: (name: string, values: string) => void;
 }
 
 export const GeneralInformationForm = forwardRef(
@@ -23,7 +22,11 @@ export const GeneralInformationForm = forwardRef(
     props: IGeneralInformationFormProps,
     ref: React.Ref<FormikProps<IGeneralInformationForm>>
   ) {
-    const { initialValues, onSubmit, loading, handleSubmit } = props;
+    const { initialValues, onSubmit, loading } = props;
+
+    const handleUpdateDataFomr = (data: { [key: string]: string | number }) => {
+      formik.setFieldValue("aplication", data.n_Usecase);
+    };
 
     const [linixUseCases, setLinixUseCases] = useState<
       Record<string, unknown>[]
@@ -51,7 +54,7 @@ export const GeneralInformationForm = forwardRef(
       <GeneralInformationFormUI
         loading={loading}
         formik={formik}
-        handleSubmit={handleSubmit}
+        handleSubmit={handleUpdateDataFomr}
         linixUseCases={linixUseCases}
       />
     );

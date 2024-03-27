@@ -12,7 +12,7 @@ import { SearchUserCard } from "@src/components/cards/SearchUserCard";
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
   loading?: boolean;
-  handleSubmit: (name: string, values: string) => void;
+  handleSubmit: (dataSelect: { [key: string]: string | number }) => void;
   linixUseCases: Record<string, unknown>[];
 }
 
@@ -61,9 +61,7 @@ export function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             nameModal="searchField"
             labelModal="Digite el código o nombre de la aplicación."
             placeholderModal="Digite el código o nombre de la aplicación."
-            onUserSelect={(info) =>
-              handleSubmit("aplication", info.k_Usecase as string)
-            }
+            onUserSelect={handleSubmit}
             userData={linixUseCases}
             searchFieldData={searchData}
             onReset={() => {}}

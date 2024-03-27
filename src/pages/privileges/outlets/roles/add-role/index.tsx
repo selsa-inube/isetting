@@ -162,19 +162,6 @@ export function AddRol() {
     handleStepChange(currentStep - 1);
   };
 
-  const handleUptdateForm = (name: string, value: string) => {
-    const stepKey = Object.entries(stepsAddRol).find(
-      ([, config]) => config.id === currentStep
-    )?.[0];
-
-    if (stepKey) {
-      setDataAddRoleLinixForm((prevFormData) => ({
-        ...prevFormData,
-        [name]: { values: value },
-      }));
-    }
-  };
-
   const handleUpdateDataSwitchstep = (values: IInitialiceFormRole[]) => {
     const stepKey = Object.entries(stepsAddRol).find(
       ([, config]) => config.id === currentStep
@@ -198,8 +185,8 @@ export function AddRol() {
       handlePreviousStep={handlePreviousStep}
       setAddRoleFormValid={setIsAddRoleFormValid}
       formReferences={formReferences}
-      handleUpdateGeneralInformation={handleUptdateForm}
       handleUpdateDataSwitchstep={handleUpdateDataSwitchstep}
+      setCurrentStep={setCurrentStep}
     />
   );
 }

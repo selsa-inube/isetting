@@ -50,7 +50,9 @@ function SearchUserCard(props: SearchUserCardProps) {
     onReset,
   } = props;
   const [showModal, setShowModal] = useState(false);
-  const [selectedUsername, setSelectedUsername] = useState("");
+
+  const [selectedUsername, setSelectedUsername] = useState(selectedId);
+
   const smallScreen = useMediaQuery("(max-width: 970px)");
 
   useEffect(() => {
