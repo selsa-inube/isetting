@@ -11,6 +11,7 @@ import { LinixUseCase } from "@pages/privileges/outlets/linixUseCase";
 import { Roles } from "@pages/privileges/outlets/roles";
 import { AddingLinixUseCase } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 import { AddRol } from "@pages/privileges/outlets/roles/add-role";
+import { EditCaseLinix } from "@src/pages/privileges/outlets/linixUseCase/components/EditModal";
 
 function PrivilegesRoutes() {
   return (
@@ -27,6 +28,7 @@ function PrivilegesRoutes() {
         <Route path="roles/add-role" element={<AddRol />} />
         <Route path="users/invite" element={<Invite />} />
         <Route path="users/edit/:user_id" element={<EditUser />} />
+        <Route path="linixUseCase/edit/:user_id" element={<EditCaseLinix />} />
         <Route
           path="users/complete-invitation/:invitation_id"
           element={<CompleteInvitation />}

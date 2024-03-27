@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useFormik } from "formik";
 
-import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import {
   IGeneralInformation,
@@ -9,6 +8,7 @@ import {
 } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
 
 import { GeneralInformationFormUI } from "./interface";
+import { generalMessage } from "../../config/messages.config";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -40,7 +40,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   } = props;
 
   const [loading, setLoading] = useState(false);
-  const [showMessage, setShowMessage] = useState<IMessageState>({
+  const [message, setMessage] = useState<IMessageState>({
     visible: false,
   });
 
@@ -49,9 +49,9 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     setTimeout(() => {
       handleSubmit(formik.values);
       setLoading(false);
-      setShowMessage({
+      setMessage({
         visible: true,
-        type: EMessageType.SUCCESS,
+        data: generalMessage.success,
       });
     }, LOADING_TIMEOUT);
   }
@@ -64,13 +64,16 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     },
     onSubmit,
   });
+  const handleReset = () => {
+    if (onHasChanges) onHasChanges(false);
+  };
 
   const handleSubmitForm = () => {
     formik.validateForm().then((errors) => {
       if (Object.keys(errors).length > 0) {
-        setShowMessage({
+        setMessage({
           visible: true,
-          type: EMessageType.FAILED,
+          data: generalMessage.failed,
         });
       }
       formik.handleSubmit();
@@ -81,7 +84,7 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
     JSON.stringify(initialValues) !== JSON.stringify(valueCompare);
 
   const handleCloseSectionMessage = () => {
-    setShowMessage({
+    setMessage({
       visible: false,
     });
   };
@@ -98,6 +101,10 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
       formik.validateForm().then((errors) => {
         if (!errors || Object.keys(errors).length === 0) {
           handleSubmit(formikValues);
+          setMessage({
+            visible: true,
+            data: generalMessage.success,
+          });
         }
       });
     });
@@ -106,11 +113,13 @@ function GeneralInformationForm(props: GeneralInformationFormProps) {
   return (
     <GeneralInformationFormUI
       loading={loading}
+      handleReset={handleReset}
       formik={formik}
-      showMessage={showMessage}
+      message={message}
       withSubmitButtons={withSubmitButtons}
       handleCloseSectionMessage={handleCloseSectionMessage}
       hasChanges={hasChanges}
+      onCloseSectionMessage={handleCloseSectionMessage}
       formInvalid={formik.isValidating || formik.isValid}
       handleSubmitForm={handleSubmitForm}
       handleChangeForm={handleChangeForm}

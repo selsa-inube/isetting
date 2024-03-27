@@ -17,14 +17,15 @@ import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types
 import { SearchUserCard } from "@src/components/cards/SearchUserCard";
 import { OptionSelect } from "@src/pages/privileges/outlets/linixUseCase/adding-linix-use-case/config/selectLinixUseCase.config";
 import { IGeneralInformation } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case/index";
-
 import { StyledSelectContainer } from "./styles";
+import { RenderMessage } from "@src/components/feedback/RenderMessage";
 
 interface GeneralInformationFormUIProps {
   formik: FormikValues;
   loading: boolean;
   withSubmitButtons?: boolean;
-  showMessage: IMessageState;
+  message: IMessageState;
+  onCloseSectionMessage: () => void;
   handleCloseSectionMessage: () => void;
   hasChanges: (valueCompare: IGeneralInformation) => boolean;
   formInvalid: boolean;
@@ -32,6 +33,7 @@ interface GeneralInformationFormUIProps {
   handleChangeForm: (name: string, value: string) => void;
   readOnly?: boolean;
   csOptions: Record<string, unknown>[];
+  handleReset: () => void;
   webOptions: Record<string, unknown>[];
 }
 
@@ -182,11 +184,13 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
     formInvalid,
     handleSubmitForm,
     handleChangeForm,
+    onCloseSectionMessage,
+    message,
+    handleReset,
     readOnly,
     csOptions,
     webOptions,
   } = props;
-
   if (withSubmitButtons) {
     return (
       <>
@@ -205,6 +209,13 @@ function GeneralInformationFormUI(props: GeneralInformationFormUIProps) {
             webOptions
           )}
         </FormButtons>
+        {message.visible && (
+          <RenderMessage
+            message={message}
+            handleCloseMessage={onCloseSectionMessage}
+            onMessageClosed={handleReset}
+          />
+        )}
       </>
     );
   }

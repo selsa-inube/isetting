@@ -1,7 +1,7 @@
-import { EMessageType } from "@src/types/messages.types";
+import { EMessageType, IMessage } from "@src/types/messages.types";
 
 interface IAssignmentFormEntry {
-  id: string;
+  id: string | number;
   value: string;
   isActive: boolean;
 }
@@ -30,6 +30,7 @@ interface IFormsInvitation {
 
 interface IMessageState {
   visible: boolean;
+  data?: IMessage;
   type?: EMessageType;
 }
 

@@ -4,9 +4,9 @@ import {
   IAssignmentFormEntry,
   IMessageState,
 } from "@pages/privileges/outlets/users/types/forms.types";
-import { EMessageType } from "@src/types/messages.types";
 
 import { InitializerFormUI } from "./interface";
+import { generalInfoMessages } from "../GeneralInfoForm/config/messages.config";
 
 const LOADING_TIMEOUT = 1500;
 
@@ -42,19 +42,17 @@ export function InitializerForm(props: IInitializerForm) {
 
   const handleSubmitForm = () => {
     setIsLoading(true);
-
     setTimeout(() => {
       handleSubmit(formDataOptions);
       setIsLoading(false);
       setMessage({
         visible: true,
-        type: EMessageType.SUCCESS,
+        data: generalInfoMessages.success,
       });
     }, LOADING_TIMEOUT);
   };
 
   const handleReset = () => {
-    setFormDataOptions(dataOptionsForms);
     if (onHasChanges) onHasChanges(false);
   };
 
