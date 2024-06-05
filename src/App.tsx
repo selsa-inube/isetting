@@ -18,6 +18,7 @@ import { LoginRoutes } from "./routes/login";
 import { PrivilegesRoutes } from "./routes/privileges";
 import { PeopleRoutes } from "./routes/people";
 import { Login } from "./pages/login";
+import { UsersProvider } from "./context/users";
 
 const redirect_uri = window.location.origin;
 
@@ -65,7 +66,9 @@ function App() {
   return (
     <AppContextProvider>
       <GlobalStyles />
-      <RouterProvider router={router} />
+      <UsersProvider>
+        <RouterProvider router={router} />
+      </UsersProvider>
     </AppContextProvider>
   );
 }

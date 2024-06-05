@@ -4,8 +4,8 @@ export interface IGeneralInformationUsersForm {
   k_Usuari: string;
   n_Usuari: string;
   k_Grupo: string;
-  n_Grupo: string;
-  a_Numnit: string;
+  n_Grupo?: string;
+  a_Numnit?: string;
   i_Activo: string;
 }
 

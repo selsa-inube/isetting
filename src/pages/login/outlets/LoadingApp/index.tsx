@@ -2,16 +2,20 @@ import { LoadingAppUI } from "./interface";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-function LoadingApp() {
+interface LoadingProps {
+  time?: number;
+}
+function LoadingApp(props: LoadingProps) {
+  const { time = 2000 } = props;
   const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/");
-    }, 2000);
+    }, time);
 
     return () => clearTimeout(timer);
-  }, [navigate]);
+  }, [navigate, time]);
 
   return <LoadingAppUI />;
 }
