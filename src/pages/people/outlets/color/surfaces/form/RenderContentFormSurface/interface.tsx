@@ -7,6 +7,7 @@ import {
   useMediaQuery,
   NavLink,
 } from "@inube/design-system";
+import { inube as newInube } from "@inubekit/foundations";
 import { ThemeProvider } from "styled-components";
 
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
@@ -84,7 +85,7 @@ function RenderSurfaceContentFormUI(props: RenderSurfaceContentFormUIProps) {
         handleReset={handleReset}
         loading={isLoading}
       >
-        <ThemeProvider theme={updatedTheme}>
+        <ThemeProvider theme={{ ...newInube.text, ...newInube.typography }}>
           <Stack direction="column" gap={inube.spacing.s350}>
             {formType === "navLink" && (
               <StyledNavLinkContainer>

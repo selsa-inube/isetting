@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
+
 import { getTokenColor } from "@src/utils/getTokenColor";
+import { inube } from "@inubekit/foundations";
 
 interface IStyledColorTokenCard {
   $tokenName: string;
@@ -40,7 +41,7 @@ const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
   width: ${({ width }) => (width ? width : "auto")};
   height: ${({ $smallScreen }) => ($smallScreen ? "36px" : "auto")};
   box-sizing: border-box;
-  border-radius: ${inube.spacing.s100};
+  border-radius: 8px;
   cursor: pointer;
   min-width: max-content;
   background-color: ${({ $tokenName, theme }) =>
@@ -55,11 +56,10 @@ const StyledColorTokenCard = styled.div<IStyledColorTokenCard>`
 const StyledGridContainer = styled.div<StyledPaletteUI>`
   background-color: ${({ theme, $hasBackground }) =>
     $hasBackground
-      ? theme?.color?.surface?.dark?.clear || inube.color.surface.dark.clear
+      ? theme?.color?.surface?.dark?.clear || inube.palette.neutral.N30
       : "unset"};
-  border-radius: ${inube.spacing.s100};
-  padding: ${({ $hasBackground }) =>
-    $hasBackground ? inube.spacing.s150 : inube.spacing.s0};
+  border-radius: 8px;
+  padding: ${({ $hasBackground }) => ($hasBackground ? "12px" : "0px")};
   width: 100%;
   & div {
     place-content: unset;

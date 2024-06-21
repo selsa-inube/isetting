@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { IUsersMessage } from "@pages/privileges/outlets/users/types/users.types";
+
 import { inube } from "@inube/design-system";
 import { paletteMessagesConfig } from "@pages/people/outlets/color/palette/config/palette.config";
 import { RenderContentFormPaletteUI } from "./interface";

@@ -1,14 +1,18 @@
-import { Stack, Text, inube } from "@inube/design-system";
+import tinycolor from "tinycolor2";
+import { useRef, useEffect } from "react";
+
+import { getTokenColor } from "@src/utils/getTokenColor";
+import { Stack } from "@inubekit/stack";
+import { inube } from "@inubekit/foundations";
+import { Text } from "@inubekit/text";
+import { Fieldset } from "@components/inputs/Fieldset";
+
+import { TokenColorCard } from "../TokenColorCard";
+import { Appearance } from "./types";
 import {
   StyledTokenColorCardContainer,
   StyledTextWithTokenContainer,
 } from "./styles";
-import { Fieldset } from "@components/inputs/Fieldset";
-import { TokenColorCard } from "../TokenColorCard";
-import { Appearance } from "./types";
-import tinycolor from "tinycolor2";
-import { useRef, useEffect } from "react";
-import { getTokenColor } from "@src/utils/getTokenColor";
 
 interface FieldsetColorCardProps {
   title: string;
@@ -61,11 +65,11 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
 
   return (
     <Fieldset title={title} fieldsetRef={fieldsetRef}>
-      <Stack direction="column" gap={inube.spacing.s200}>
+      <Stack direction="column" gap="16px">
         <Text size="medium" appearance="gray">
           {description}
         </Text>
-        <Stack gap={inube.spacing.s200} alignItems="center">
+        <Stack gap="16px" alignItems="center">
           <StyledTokenColorCardContainer $requireBackground={requireBackground}>
             <TokenColorCard
               tokenName={tokenName!}
@@ -82,7 +86,7 @@ function FieldsetColorCard(props: FieldsetColorCardProps) {
             <StyledTextWithTokenContainer
               $requireBackground={requireBackground}
             >
-              <Stack padding="s100">{children}</Stack>
+              <Stack padding="8px">{children}</Stack>
             </StyledTextWithTokenContainer>
           )}
         </Stack>

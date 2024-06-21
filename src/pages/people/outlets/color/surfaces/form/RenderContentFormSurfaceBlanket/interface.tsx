@@ -8,6 +8,7 @@ import {
   Grid,
   useMediaQuery,
 } from "@inube/design-system";
+import { inube as newInube } from "@inubekit/foundations";
 import { StyledBackdropBlanket, StyledModal } from "./styles";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
@@ -83,7 +84,7 @@ function RenderContentFormSurfaceBlanketUI(
         handleReset={handleReset}
         loading={isLoading}
       >
-        <ThemeProvider theme={updatedTheme}>
+        <ThemeProvider theme={{ ...newInube.text, ...newInube.typography }}>
           <Stack direction="column" gap={inube.spacing.s350}>
             <Button
               appearance="dark"

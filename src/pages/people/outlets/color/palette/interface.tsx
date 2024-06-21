@@ -3,7 +3,6 @@ import {
   Stack,
   Tabs,
   useMediaQueries,
-  inube,
 } from "@inube/design-system";
 
 import { PageTitle } from "@components/PageTitle";
@@ -36,7 +35,7 @@ export function PaletteUI(props: PaletteUIProps) {
         direction="column"
         width="-webkit-fill-available"
         padding={smallScreen ? "s300" : "s400 s800"}
-        gap={inube.spacing.s600}
+        gap="48px"
       >
         <Stack gap="48px" direction="column">
           <Stack gap="24px" direction="column">
@@ -55,7 +54,7 @@ export function PaletteUI(props: PaletteUIProps) {
 
         <StyledContainer>
           <StyledTabsContainer $typeTabs={typeTabs}>
-            <Stack direction="column" gap={inube.spacing.s400}>
+            <Stack direction="column" gap="32px">
               <Tabs
                 onChange={handleTabChange}
                 selectedTab={selectedTab}

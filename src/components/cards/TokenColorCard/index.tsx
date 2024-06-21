@@ -1,13 +1,20 @@
-import {
-  Stack,
-  Text,
-  useMediaQuery,
-  Grid,
-  inube,
-  Icon,
-} from "@inube/design-system";
 import { useContext, useRef, useState, useEffect } from "react";
+import { MdOutlineEdit } from "react-icons/md";
 import tinycolor from "tinycolor2";
+import { ThemeContext, ThemeProvider } from "styled-components";
+
+import { inube } from "@inube/design-system";
+import { Stack } from "@inubekit/stack";
+import { ITextAppearance, Text } from "@inubekit/text";
+import { inube as newInube } from "@inubekit/foundations";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Grid } from "@inubekit/grid";
+import { Icon } from "@inubekit/icon";
+
+import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
+import { Popup } from "@components/feedback/Popup";
+import { getTokenColor } from "@src/utils/getTokenColor";
+
 import {
   StyledColorTokenCard,
   HiddenColorPicker,
@@ -16,11 +23,6 @@ import {
   StyledHoverPopup,
   StyledHoverIcon,
 } from "./styles";
-import { ThemeContext, ThemeProvider } from "styled-components";
-import { Popup } from "@components/feedback/Popup";
-import { MdOutlineEdit } from "react-icons/md";
-import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
-import { getTokenColor } from "@src/utils/getTokenColor";
 
 interface ITokenColorCardProps {
   tokenName: string;
@@ -55,7 +57,7 @@ function TokenColorCard(props: ITokenColorCardProps) {
   const color = tinycolor(getTokenColor(tokenName, theme));
   const isTransparent = color.getAlpha() < 0.5;
   const isDark = color.isDark();
-  let textAppearance = isDark ? "light" : "dark";
+  let textAppearance: ITextAppearance = isDark ? "light" : "dark";
   textAppearance = isTransparent ? "dark" : textAppearance;
 
   let hasChanges = toggleActive === isActive;
@@ -100,9 +102,8 @@ function TokenColorCard(props: ITokenColorCardProps) {
     >
       <Stack
         gap="12px"
-        padding="s100 s150"
+        padding="8px 15px"
         alignContent="stretch"
-        justify="center"
         width={type === "colorPicker" ? "100%" : "auto"}
       >
         <Stack
@@ -110,12 +111,12 @@ function TokenColorCard(props: ITokenColorCardProps) {
           gap="12px"
           width={type === "colorPicker" ? "100%" : "auto"}
         >
-          <ThemeProvider theme={inube}>
+          <ThemeProvider theme={{ ...newInube.text, ...newInube.typography }}>
             <StyledDivText>
               <Text
                 type="label"
                 size={smallScreen ? "small" : "medium"}
-                textAlign={"center"}
+                textAlign="center"
                 appearance={textAppearance}
               >
                 {tokenName}

@@ -1,5 +1,6 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { Stack, Text, inube } from "@inube/design-system";
+import { inube as newInube } from "@inubekit/foundations";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
@@ -64,7 +65,7 @@ function RenderTextContentFormUI(props: RenderTextContentFormUIProps) {
         handleReset={handleReset}
         loading={isLoading}
       >
-        <ThemeProvider theme={updatedTheme}>
+        <ThemeProvider theme={newInube.text}>
           <Stack direction="column" gap={inube.spacing.s350}>
             {textCards.map(([key, config]: [string, ITextCardConfig]) => (
               <FieldsetColorCard
