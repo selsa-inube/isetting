@@ -32,6 +32,7 @@ import { GeneralInformationForm } from "../components/GeneralInformationForm";
 
 import { ClientServerButtonSelection } from "../components/ClientServerButtonSelection";
 import { VerificationAddLinixUseCase } from "../components/VerificationForm";
+import { LoadingApp } from "@src/pages/login/outlets/LoadingApp";
 
 function finishModal(
   handleCloseModal: () => void,
@@ -189,125 +190,136 @@ function AddingLinixUseCaseUI(props: AddingLinixUseCaseUIProps) {
     }
   };
   return (
-    <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
-      <Stack gap={inube.spacing.s600} direction="column">
-        <Stack gap={inube.spacing.s400} direction="column">
-          <Breadcrumbs crumbs={CrateLinixUseCaseConfig[0].crumbs} />
-          <Stack
-            justifyContent="space-between"
-            alignItems="center"
-            gap={inube.spacing.s650}
-          >
-            <PageTitle
-              title={CrateLinixUseCaseConfig[0].title}
-              description={CrateLinixUseCaseConfig[0].description}
-              navigatePage="/privileges/linixUseCase"
-            />
+    <>
+      {loading ? (
+        <LoadingApp />
+      ) : (
+        <Stack direction="column" padding={smallScreen ? "s200" : "s400 s800"}>
+          <Stack gap={inube.spacing.s600} direction="column">
+            <Stack gap={inube.spacing.s400} direction="column">
+              <Breadcrumbs crumbs={CrateLinixUseCaseConfig[0].crumbs} />
+              <Stack
+                justifyContent="space-between"
+                alignItems="center"
+                gap={inube.spacing.s650}
+              >
+                <PageTitle
+                  title={CrateLinixUseCaseConfig[0].title}
+                  description={CrateLinixUseCaseConfig[0].description}
+                  navigatePage="/privileges/linixUseCase"
+                />
+              </Stack>
+            </Stack>
+            <>
+              <StyledAssistedContainer $cursorDisabled={!isCurrentFormValid}>
+                <Assisted
+                  steps={Object.values(stepsAddingLinixUseCase)}
+                  currentStepId={currentStep}
+                  handlePrev={() => {
+                    const prevStep =
+                      currentStep ===
+                      Object.values(stepsAddingLinixUseCase).length
+                        ? currentStep - 1
+                        : currentStep === 3 &&
+                          !buttonOptionsMock.some(
+                            (buttonOptions) =>
+                              buttonOptions.OPCION_CLIENTE_SERVIDOR ===
+                              formData.generalInformation.values.k_Opcion
+                          )
+                        ? 1
+                        : currentStep - 1;
+                    handleNextStep(prevStep);
+                  }}
+                  handleNext={() => {
+                    const nextStep =
+                      currentStep ===
+                      Object.values(stepsAddingLinixUseCase).length
+                        ? (handleToggleModal(), currentStep)
+                        : currentStep === 1 &&
+                          !buttonOptionsMock.some(
+                            (buttonOptions) =>
+                              buttonOptions.OPCION_CLIENTE_SERVIDOR ===
+                              formData.generalInformation.values.k_Opcion
+                          )
+                        ? 3
+                        : currentStep + 1;
+                    handleNextStep(nextStep);
+                  }}
+                  titleButtonText={titleButtonTextAssited}
+                />
+              </StyledAssistedContainer>
+              {renderStepContent(
+                currentStep,
+                formReferences,
+                setIsCurrentFormValid,
+                csOptions,
+                webOptions,
+                handleStepChange,
+                handleUpdateFormData,
+                handleNextStep,
+                formData,
+                setCurrentStep
+              )}
+            </>
+            <Stack gap={inube.spacing.s200} justifyContent="flex-end">
+              <Button
+                onClick={() => {
+                  const prevStep =
+                    currentStep ===
+                    Object.values(stepsAddingLinixUseCase).length
+                      ? currentStep - 1
+                      : currentStep === 3 &&
+                        !buttonOptionsMock.some(
+                          (buttonOptions) =>
+                            buttonOptions.OPCION_CLIENTE_SERVIDOR ===
+                            formData.generalInformation.values.k_Opcion
+                        )
+                      ? 1
+                      : currentStep - 1;
+                  handleNextStep(prevStep);
+                }}
+                type="button"
+                disabled={currentStep === 1}
+                spacing="compact"
+                variant="none"
+                appearance="gray"
+              >
+                Atrás
+              </Button>
+
+              <Button
+                onClick={() => {
+                  if (
+                    currentStep ===
+                    Object.values(stepsAddingLinixUseCase).length
+                  ) {
+                    handleToggleModal();
+                  } else {
+                    optionValidations();
+                  }
+                }}
+                ing="compact"
+                disabled={!isCurrentFormValid}
+              >
+                {currentStep === Object.values(stepsAddingLinixUseCase).length
+                  ? "Enviar"
+                  : "Siguiente"}
+              </Button>
+              {message.visible && (
+                <RenderMessage
+                  message={message}
+                  handleCloseMessage={onCloseSectionMessage}
+                  onMessageClosed={onCloseSectionMessage}
+                />
+              )}
+            </Stack>
           </Stack>
-        </Stack>
-        <>
-          <StyledAssistedContainer $cursorDisabled={!isCurrentFormValid}>
-            <Assisted
-              steps={Object.values(stepsAddingLinixUseCase)}
-              currentStepId={currentStep}
-              handlePrev={() => {
-                const prevStep =
-                  currentStep === Object.values(stepsAddingLinixUseCase).length
-                    ? currentStep - 1
-                    : currentStep === 3 &&
-                      !buttonOptionsMock.some(
-                        (buttonOptions) =>
-                          buttonOptions.OPCION_CLIENTE_SERVIDOR ===
-                          formData.generalInformation.values.k_Opcion
-                      )
-                    ? 1
-                    : currentStep - 1;
-                handleNextStep(prevStep);
-              }}
-              handleNext={() => {
-                const nextStep =
-                  currentStep === Object.values(stepsAddingLinixUseCase).length
-                    ? (handleToggleModal(), currentStep)
-                    : currentStep === 1 &&
-                      !buttonOptionsMock.some(
-                        (buttonOptions) =>
-                          buttonOptions.OPCION_CLIENTE_SERVIDOR ===
-                          formData.generalInformation.values.k_Opcion
-                      )
-                    ? 3
-                    : currentStep + 1;
-                handleNextStep(nextStep);
-              }}
-              titleButtonText={titleButtonTextAssited}
-            />
-          </StyledAssistedContainer>
-          {renderStepContent(
-            currentStep,
-            formReferences,
-            setIsCurrentFormValid,
-            csOptions,
-            webOptions,
-            handleStepChange,
-            handleUpdateFormData,
-            handleNextStep,
-            formData,
-            setCurrentStep
-          )}
-        </>
-        <Stack gap={inube.spacing.s200} justifyContent="flex-end">
-          <Button
-            onClick={() => {
-              const prevStep =
-                currentStep === Object.values(stepsAddingLinixUseCase).length
-                  ? currentStep - 1
-                  : currentStep === 3 &&
-                    !buttonOptionsMock.some(
-                      (buttonOptions) =>
-                        buttonOptions.OPCION_CLIENTE_SERVIDOR ===
-                        formData.generalInformation.values.k_Opcion
-                    )
-                  ? 1
-                  : currentStep - 1;
-              handleNextStep(prevStep);
-            }}
-            type="button"
-            disabled={currentStep === 1}
-            spacing="compact"
-            variant="none"
-            appearance="gray"
-          >
-            Atrás
-          </Button>
 
-          <Button
-            onClick={() => {
-              if (
-                currentStep === Object.values(stepsAddingLinixUseCase).length
-              ) {
-                handleToggleModal();
-              } else {
-                optionValidations();
-              }
-            }}
-            ing="compact"
-            disabled={!isCurrentFormValid}
-          >
-            {currentStep === Object.values(stepsAddingLinixUseCase).length
-              ? "Enviar"
-              : "Siguiente"}
-          </Button>
-          {message.visible && (
-            <RenderMessage
-              message={message}
-              handleCloseMessage={onCloseSectionMessage}
-              onMessageClosed={onCloseSectionMessage}
-            />
-          )}
+          {showModal &&
+            finishModal(handleToggleModal, loading, handleFinishForm)}
         </Stack>
-      </Stack>
-
-      {showModal && finishModal(handleToggleModal, loading, handleFinishForm)}
-    </Stack>
+      )}
+    </>
   );
 }
 

@@ -164,10 +164,10 @@ function RenderFormFields(
           userData={webOptions}
           searchFieldData={searchData}
           onReset={() => {}}
-          idLabel="K_opcion"
-          nameLabel="Nombre_opcion"
+          idLabel="k_Funcio"
+          nameLabel="n_Funcio"
           onUserSelect={(value: Record<string, unknown>) =>
-            handleChangeForm("k_Funcio", value.K_opcion as string)
+            handleChangeForm("k_Funcio", value.k_Funcio as string)
           }
           selectedId={formik.values.k_Funcio}
         />
