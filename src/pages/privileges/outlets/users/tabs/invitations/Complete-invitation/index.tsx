@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { getAll } from "@mocks/utils/dataMock.service";
 import { EMessageType } from "@src/types/messages.types";
-import { IInvitationsEntry } from "@src/services/users/invitation.types";
+import { IInvitationsEntry } from "@services/users/invitation.types";
 import { updateItemData } from "@mocks/utils/dataMock.service";
 import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 

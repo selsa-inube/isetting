@@ -5,7 +5,7 @@ import { editUserTabsConfig } from "@pages/privileges/outlets/users/edit-user/co
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { dataToAssignmentFormEntry } from "@pages/privileges/outlets/linixUseCase/adding-linix-use-case";
 import { getAll } from "@mocks/utils/dataMock.service";
-import { IFormAddUsers } from "@src/services/users/users.types";
+import { IFormAddUsers } from "@services/users/users.types";
 
 import { EditUserUI } from "./interface";
 

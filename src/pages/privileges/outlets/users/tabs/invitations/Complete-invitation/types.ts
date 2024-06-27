@@ -1,5 +1,5 @@
 import { FormikProps } from "formik";
-import { IInvitationsEntry } from "@src/services/users/invitation.types";
+import { IInvitationsEntry } from "@services/users/invitation.types";
 
 export interface IStep {
   id: number;

@@ -1,7 +1,7 @@
 import { MdErrorOutline, MdThumbUpOffAlt } from "react-icons/md";
 
 import { EAppearance } from "@src/types/colors.types";
-import { IInvitationsEntry } from "@src/services/users/invitation.types";
+import { IInvitationsEntry } from "@services/users/invitation.types";
 
 const resendInvitationModal = {
   title: "Reenviar Invitación",

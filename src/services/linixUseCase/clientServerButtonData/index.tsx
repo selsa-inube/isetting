@@ -1,19 +1,19 @@
 import { enviroment } from "@src/config/environment";
-import { mapWebReportsFormatsApiToEntities } from "./mappers";
+import { mapClientServerButtonDataFormatsApiToEntities } from "./mappers";
 
-const getWebReportsFormats = async (
-  k_Usecase: string
+const getClientServerButtonDataFormats = async (
+  id: string
 ): Promise<Record<string, unknown>[]> => {
   const maxRetries = 5;
   const fetchTimeout = 3000;
 
-  const requestUrl = `${enviroment.ICLIENT_API_URL_QUERY_PROCESS}/casos-de-uso/${k_Usecase}`;
+  const requestUrl = `${enviroment.ICLIENT_API_URL_SERVER_BUTTON}/campo-por-forma?k_Nforma=${id}`;
 
   const options: RequestInit = {
     method: "GET",
     headers: {
       Realm: enviroment.REALM,
-      "X-Action": "SearchReportesWebPorCasoDeUsoFull",
+      "X-Action": "SearchOpcionesCSPorCasosDeUsoFull",
       "X-Business-Unit": enviroment.TEMP_BUSINESS_UNIT,
       "Content-type": "application/json; charset=UTF-8",
     },
@@ -43,11 +43,11 @@ const getWebReportsFormats = async (
 
       const data = await res.json();
 
-      const normalizedWebReportsFormats = Array.isArray(data)
-        ? mapWebReportsFormatsApiToEntities(data)
+      const normalizedClientServerButtonDataFormats = Array.isArray(data)
+        ? mapClientServerButtonDataFormatsApiToEntities(data)
         : [];
 
-      return normalizedWebReportsFormats;
+      return normalizedClientServerButtonDataFormats;
     } catch (error: any) {
       clearTimeout(timeoutId);
       if (attempt === maxRetries) {
@@ -61,4 +61,4 @@ const getWebReportsFormats = async (
   return [];
 };
 
-export { getWebReportsFormats };
+export { getClientServerButtonDataFormats };

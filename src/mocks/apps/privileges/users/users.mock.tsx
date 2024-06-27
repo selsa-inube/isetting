@@ -1,4 +1,4 @@
-import { IGeneralInformationUsersForm } from "@src/services/users/users.types";
+import { IGeneralInformationUsersForm } from "@services/users/users.types";
 
 const userEntriesDataMock: IGeneralInformationUsersForm[] = [
   {

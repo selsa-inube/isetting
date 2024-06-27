@@ -53,7 +53,7 @@ const InteractiveModal = ({
   };
 
   const renderCard = (data: { [key: string]: string }) => {
-    if (data[nameLabel] !== selectedItem) return null;
+    if (data[idLabel] !== selectedItem) return null;
 
     return (
       <SubjectSearchCard

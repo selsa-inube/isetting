@@ -1,7 +1,7 @@
 import { enviroment } from "@src/config/environment";
-import { mapWebReportsFormatsApiToEntities } from "./mappers";
+import { mapReportsClientServerFormatsApiToEntities } from "./mappers";
 
-const getWebReportsFormats = async (
+const getReportsClientServerFormats = async (
   k_Usecase: string
 ): Promise<Record<string, unknown>[]> => {
   const maxRetries = 5;
@@ -13,7 +13,7 @@ const getWebReportsFormats = async (
     method: "GET",
     headers: {
       Realm: enviroment.REALM,
-      "X-Action": "SearchReportesWebPorCasoDeUsoFull",
+      "X-Action": "SearchReportesCsPorCasoDeUsoFull",
       "X-Business-Unit": enviroment.TEMP_BUSINESS_UNIT,
       "Content-type": "application/json; charset=UTF-8",
     },
@@ -43,11 +43,11 @@ const getWebReportsFormats = async (
 
       const data = await res.json();
 
-      const normalizedWebReportsFormats = Array.isArray(data)
-        ? mapWebReportsFormatsApiToEntities(data)
+      const normalizedReportsClientServerFormats = Array.isArray(data)
+        ? mapReportsClientServerFormatsApiToEntities(data)
         : [];
 
-      return normalizedWebReportsFormats;
+      return normalizedReportsClientServerFormats;
     } catch (error: any) {
       clearTimeout(timeoutId);
       if (attempt === maxRetries) {
@@ -61,4 +61,4 @@ const getWebReportsFormats = async (
   return [];
 };
 
-export { getWebReportsFormats };
+export { getReportsClientServerFormats };

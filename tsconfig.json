@@ -19,6 +19,7 @@
     "baseUrl": ".",
     "paths": {
       "@src/*": ["./src/*"],
+      "@services/*": ["./src/services/*"],
       "@mocks/*": ["./src/mocks/*"],
       "@components/*": ["./src/components/*"],
       "@context/*": ["./src/context/*"],

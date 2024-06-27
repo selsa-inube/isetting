@@ -3,7 +3,7 @@ import { FormikProps, useFormik } from "formik";
 import * as Yup from "yup";
 import { validationMessages } from "@validations/validationMessages";
 import { validationRules } from "@validations/validationRules";
-import { IInvitationsEntry } from "@src/services/users/invitation.types";
+import { IInvitationsEntry } from "@services/users/invitation.types";
 import { GeneralInformationFormUI } from "./interface";
 
 const LOADING_TIMEOUT = 1500;

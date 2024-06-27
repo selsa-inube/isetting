@@ -1,5 +1,3 @@
-import { IAssignmentFormEntry } from "../users/types/forms.types";
-
 interface OpcionesCsPorCasoDeUso {
   k_Opcion: string;
 }
@@ -27,19 +25,18 @@ export interface IInitialiceFormLinixUseCase {
 }
 
 interface UseCase {
-  id: string;
-  k_Usecase: string;
-  n_Usecase: string;
-  n_Descrip: string;
-  a_Publicc: string;
+  id?: string;
+  a_Publicc?: string;
   i_Tipusec: string;
   k_Ncampo: string;
   k_Nforma: string;
-  k_Opcion?: string;
+  k_Usecase: string;
+  n_Descrip: string;
+  n_Usecase: string;
   opcionesCsPorCasoDeUso?: OpcionesCsPorCasoDeUso[];
   opcionesPortalWebPorCasoDeUso?: OpcionesPortalWebPorCasoDeUso[];
   reportesCsPorCasoDeUso?: ReportesCsPorCasoDeUso[];
-  reportesWebPorCasoDeUso?: IAssignmentFormEntry[];
+  reportesWebPorCasoDeUso?: ReportesWebPorCasoDeUso[];
   tiposDeDocumentoPorCasoDeUso?: TiposDeDocumentoPorCasoDeUso[];
 }
 

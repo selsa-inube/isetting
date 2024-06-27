@@ -58,18 +58,18 @@ function SearchUserCard(props: SearchUserCardProps) {
   } = props;
   const [showModal, setShowModal] = useState(false);
 
-  const [selectedUsername, setSelectedUsername] = useState(selectedId);
+  const [selectedUsername, setSelectedUsername] = useState(
+    userData.find((data) => data[idLabel] === selectedId)?.[nameLabel] || ""
+  );
 
   const [validateCardRemoved, setValidateCardRemoved] = useState(false);
 
   const smallScreen = useMediaQuery("(max-width: 970px)");
 
   useEffect(() => {
-    userData.forEach((data) => {
-      if (data[idLabel] === selectedId) {
-        setSelectedUsername(String(data[nameLabel]));
-      }
-    });
+    setSelectedUsername(
+      userData.find((data) => data[idLabel] === selectedId)?.[nameLabel] || ""
+    );
   }, [idLabel, selectedId, nameLabel, userData]);
 
   const resetSelectedUser = () => {
@@ -128,7 +128,7 @@ function SearchUserCard(props: SearchUserCardProps) {
       {showModal && (
         <InteractiveModal
           title={title}
-          selectedItem={selectedUsername}
+          selectedItem={selectedId}
           infoTitle={infoTitle}
           closeModal={handleToggleModal}
           infoData={searchFieldData}

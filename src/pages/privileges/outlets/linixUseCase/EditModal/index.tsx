@@ -203,7 +203,9 @@ function EditCaseLinix() {
   }, []);
 
   function getUserInformation() {
-    return linixUseCases.find((linixUseCase) => linixUseCase.id === user_id);
+    return linixUseCases.find(
+      (linixUseCase) => linixUseCase.k_Usecase === user_id
+    );
   }
 
   const handleSubmit = (values: IAssignmentFormEntry[]) => {

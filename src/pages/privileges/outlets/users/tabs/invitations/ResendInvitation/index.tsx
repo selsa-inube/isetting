@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IInvitationsEntry } from "@src/services/users/invitation.types";
+import { IInvitationsEntry } from "@services/users/invitation.types";
 import { ResendInvitationUI } from "./interface";
 
 interface ResendInvitationProps {

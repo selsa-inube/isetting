@@ -6,7 +6,7 @@ import {
   usersTitlesConfig,
 } from "@pages/privileges/outlets/users/config/usersTable.config";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
-import { IGeneralInformationUsersForm } from "@src/services/users/users.types";
+import { IGeneralInformationUsersForm } from "@services/users/users.types";
 import { getAll } from "@mocks/utils/dataMock.service";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 

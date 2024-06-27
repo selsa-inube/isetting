@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useFormik } from "formik";
+import { useAuth0 } from "@auth0/auth0-react";
 
+import { getClientServerButtonDataFormats } from "@services/linixUseCase/clientServerButtonData";
 import { EMessageType } from "@src/types/messages.types";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
-import { getAll } from "@mocks/utils/dataMock.service";
 import {
   IHandleChangeFormData,
   IClientServerButton,
@@ -14,6 +15,8 @@ import { ClientServerButtonSelectionUI } from "./interface";
 const LOADING_TIMEOUT = 1500;
 
 interface ClientServerButtonSelectionProps {
+  id?: string;
+
   handleSubmit: (values: IHandleChangeFormData) => void;
   csSelected: string;
   onHasChanges?: (hasChanges: boolean) => void;
@@ -23,9 +26,9 @@ interface ClientServerButtonSelectionProps {
 
 function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
   const {
+    id,
     handleSubmit,
     onHasChanges,
-    csSelected,
     initialValues = { csButtonOption: "" },
     withSubmitButtons = false,
   } = props;
@@ -37,21 +40,30 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
   const [buttonOptions, setButtonOptions] = useState<Record<string, unknown>[]>(
     []
   );
+  const { user } = useAuth0();
+
+  const clientServerButtonMenuOption = async (id: string) => {
+    if (!user) return;
+    if (buttonOptions.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getClientServerButtonDataFormats(id);
+        setButtonOptions(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
   useEffect(() => {
-    getAll("button-options")
-      .then((data) => {
-        if (data !== null) {
-          setButtonOptions(data as Record<string, unknown>[]);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching button-options:", error.message);
-      });
-  }, []);
+    clientServerButtonMenuOption(id!);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   const filteredButtonOptions = buttonOptions.filter(
-    (buttonOption) => buttonOption.OPCION_CLIENTE_SERVIDOR === csSelected
+    (buttonOption) => buttonOption.OPCION_CLIENTE_SERVIDOR === id
   );
 
   const onSubmit = () => {
@@ -111,7 +123,6 @@ function ClientServerButtonSelection(props: ClientServerButtonSelectionProps) {
       });
     });
   };
-
   return (
     <ClientServerButtonSelectionUI
       loading={loading}

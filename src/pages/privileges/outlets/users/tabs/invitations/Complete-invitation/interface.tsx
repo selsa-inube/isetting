@@ -14,7 +14,7 @@ import { ItemNotFound } from "@components/layout/ItemNotFound";
 import { PageTitle } from "@components/PageTitle";
 import { InitializerForm } from "@pages/privileges/outlets/forms/InitializerForm";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
-import { IInvitationsEntry } from "@src/services/users/invitation.types";
+import { IInvitationsEntry } from "@services/users/invitation.types";
 
 import {
   CompleteInvitationUserConfig,

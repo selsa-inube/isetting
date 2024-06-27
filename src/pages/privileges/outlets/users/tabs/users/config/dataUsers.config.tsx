@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { MdModeEdit } from "react-icons/md";
 
 import { Icon } from "@inube/design-system";
-import { IGeneralInformationUsersForm } from "@src/services/users/users.types";
+import { IGeneralInformationUsersForm } from "@services/users/users.types";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
 
 import { deleteLinixUsersModal } from "../DeleteModal/config/deleteLinixUsers.config";

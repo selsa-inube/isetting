@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MdOutlineShortcut } from "react-icons/md";
 import { Button, Icon } from "@inube/design-system";
 import { DecisionModal } from "@components/feedback/DecisionModal";
-import { IInvitationsEntry } from "@src/services/users/invitation.types";
+import { IInvitationsEntry } from "@services/users/invitation.types";
 import { resendInvitationModal } from "../../../config/resendInvitationUser.config";
 
 interface ResendInvitationUIProps {

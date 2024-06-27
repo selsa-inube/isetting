@@ -67,11 +67,8 @@ export const VerificationAddLinixUseCase = (
 
   const clientServerOptions = () => {
     const clientServerId = steps.generalInformation.values.k_Opcion;
-    const clientServerValue = Object.values(
-      steps.clientServerOptions.values
-    ).find((value) => value.id === clientServerId)?.value;
 
-    return clientServerId ? clientServerId + " - " + clientServerValue : "";
+    return clientServerId;
   };
 
   const dataVerificationStep: IDataVerificationStep[] = [steps].map((data) => ({

@@ -13,7 +13,7 @@ import { PageTitle } from "@components/PageTitle";
 import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
 import { SubjectCard } from "@components/cards/SubjectCard";
-import { IFormAddUsers } from "@src/services/users/users.types";
+import { IFormAddUsers } from "@services/users/users.types";
 
 import { StyledContainer } from "./styles";
 import { GeneralInformationForm } from "../GeneralInfoForm";

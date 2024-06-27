@@ -26,6 +26,16 @@ const data: any = [
     phone: "3123202874",
   },
   {
+    id: "13",
+    username: "David Leonardo Garzón",
+    code: "LGARZON",
+    userID: "1256545",
+    position: "Credit Analyst",
+    active: false,
+    email: "dgarzon@sistemasenlinea.com.co",
+    phone: "3123202874",
+  },
+  {
     id: "12",
     username: "Angie Pinilla",
     code: "APINILLA",

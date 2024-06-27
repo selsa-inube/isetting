@@ -1,19 +1,17 @@
-import { IAssignmentFormEntry } from "@pages/privileges/outlets/users/types/forms.types";
-
-const mapReportsWebFormatsApiToEntity = (
-  reportsWebFormat: Record<string, string | number | object>
-): IAssignmentFormEntry => {
-  const buildReportsWebFormat: IAssignmentFormEntry = {
-    id: String(reportsWebFormat.k_Report),
-    value: String(reportsWebFormat.n_Report),
-    isActive: Boolean(reportsWebFormat.i_Privi),
+const mapwebReportsFormatsApiToEntity = (
+  webReportsFormat: Record<string, string | number | object>
+): Record<string, unknown> => {
+  const buildwebReportsFormat: Record<string, unknown> = {
+    k_Report: String(webReportsFormat.k_Report),
+    n_Report: String(webReportsFormat.n_Report),
+    isActive: Boolean(webReportsFormat.i_Privi),
   };
-  return buildReportsWebFormat;
+  return buildwebReportsFormat;
 };
 
-const mapReportsWebFormatsApiToEntities = (
-  ReportsWebFormat: Record<string, string | number | object>[]
-): IAssignmentFormEntry[] => {
-  return ReportsWebFormat.map(mapReportsWebFormatsApiToEntity);
+const mapWebReportsFormatsApiToEntities = (
+  webReportsFormat: Record<string, string | number | object>[]
+): Record<string, unknown>[] => {
+  return webReportsFormat.map(mapwebReportsFormatsApiToEntity);
 };
-export { mapReportsWebFormatsApiToEntities, mapReportsWebFormatsApiToEntity };
+export { mapWebReportsFormatsApiToEntities, mapwebReportsFormatsApiToEntity };

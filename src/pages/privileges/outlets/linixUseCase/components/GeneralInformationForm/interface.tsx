@@ -164,14 +164,15 @@ function RenderFormFields(
           userData={webOptions}
           searchFieldData={searchData}
           onReset={() => {}}
-          idLabel="K_opcion"
-          nameLabel="Nombre_opcion"
+          idLabel="k_Funcio"
+          nameLabel="n_Funcio"
           onUserSelect={(value: Record<string, unknown>) =>
-            handleChangeForm("k_Funcio", value.K_opcion as string)
+            handleChangeForm("k_Funcio", value.k_Funcio as string)
           }
           selectedId={formik.values.k_Funcio}
         />
       </Stack>
+
       <SearchUserCard
         id="csSearch"
         label="Opción de menú cliente servidor Linix"
@@ -188,7 +189,7 @@ function RenderFormFields(
         }
         userData={csOptions}
         searchFieldData={searchData}
-        idLabel="CODIGO_OPCION"
+        idLabel="k_Opcion"
         nameLabel="DESCRIPCION"
         onReset={() => {}}
         selectedId={formik.values.k_Opcion}

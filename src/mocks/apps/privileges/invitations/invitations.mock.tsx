@@ -1,4 +1,4 @@
-import { IInvitationsEntry } from "@src/services/users/invitation.types";
+import { IInvitationsEntry } from "@services/users/invitation.types";
 
 const invitationEntriesDataMock: IInvitationsEntry[] = [
   {

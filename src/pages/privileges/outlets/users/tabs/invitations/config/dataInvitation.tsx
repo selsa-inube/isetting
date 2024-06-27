@@ -3,7 +3,7 @@ import { MdOutlineAssignmentTurnedIn } from "react-icons/md";
 
 import { Stack, Icon } from "@inube/design-system";
 import { deleteItemData } from "@mocks/utils/dataMock.service";
-import { IInvitationsEntry } from "@src/services/users/invitation.types";
+import { IInvitationsEntry } from "@services/users/invitation.types";
 
 import { ResendInvitation } from "../ResendInvitation";
 

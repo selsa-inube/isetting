@@ -5,7 +5,7 @@ import { useMediaQuery } from "@inube/design-system";
 import { EMessageType, IMessage } from "@src/types/messages.types";
 import { getAll } from "@mocks/utils/dataMock.service";
 import { LoadingApp } from "@pages/login/outlets/LoadingApp";
-import { IInvitationsEntry } from "@src/services/users/invitation.types";
+import { IInvitationsEntry } from "@services/users/invitation.types";
 import { RenderMessage } from "@components/feedback/RenderMessage";
 
 import {

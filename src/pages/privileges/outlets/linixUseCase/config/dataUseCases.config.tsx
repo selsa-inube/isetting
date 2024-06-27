@@ -8,6 +8,14 @@ import { deleteLinixUseCaseModal } from "../delete-linix-use-case/config/deleteL
 import { DetailsModal } from "../components/DetailsModal";
 import { UseCase } from "../types";
 import { DeleteLinixUseCase } from "../delete-linix-use-case";
+import { OptionSelect } from "../adding-linix-use-case/config/selectLinixUseCase.config";
+
+export const formSelectLabel = (value: string) => {
+  return OptionSelect.find((option: any) => value === option.label)?.id;
+};
+export const formSelectOptionId = (value: string) => {
+  return OptionSelect.find((option: any) => value === option.id)?.label;
+};
 
 const titlesOptions = [
   {
@@ -52,8 +60,7 @@ export const actionsConfigLinixUseCase = (
       Nombre: linixUseCasesSelected?.n_Usecase,
       Tipo: linixUseCasesSelected?.i_Tipusec,
       Descripcion: linixUseCasesSelected?.n_Descrip,
-      "Opción botón cliente servidor":
-        linixUseCasesSelected?.k_Nforma + "-" + linixUseCasesSelected?.k_Ncampo,
+      "Opción botón cliente servidor": linixUseCasesSelected?.k_Ncampo,
     }));
     return [...data].shift();
   };
@@ -70,8 +77,8 @@ export const actionsConfigLinixUseCase = (
     {
       id: "Edit",
       actionName: "Editar",
-      content: ({ id }: { id: string }) => (
-        <Link to={`edit/${id}`}>
+      content: ({ k_Usecase }: { k_Usecase: string }) => (
+        <Link to={`edit/${k_Usecase}`}>
           <Icon appearance="dark" cursorHover icon={<MdModeEdit />} />
         </Link>
       ),
