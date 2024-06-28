@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 
-import { getAll } from "@src/mocks/utils/dataMock.service";
 import { IRol } from "@src/pages/privileges/outlets/roles/types";
 
 import { RolesUI } from "./interface";
 import { IMessageState } from "../users/types/forms.types";
 import { generalMessage } from "./config/messages.config";
+import { useAuth0 } from "@auth0/auth0-react";
+import { getRoles } from "@src/services/roles/getRoles";
 
 export function Roles() {
   const [searchRole, setSearchRole] = useState<string>("");
@@ -16,21 +17,41 @@ export function Roles() {
     visible: false,
   });
   const [idDeleted, setIdDeleted] = useState("");
+  const { user } = useAuth0();
 
-  useEffect(() => {
-    getAll("linix-roles")
-      .then((data) => {
-        if (data !== null) {
-          setLinixRoles(data as IRol[]);
-        }
-      })
-      .catch((error) => {
-        console.error(error.message);
-      })
-      .finally(() => {
+  const linixRolesData = async () => {
+    if (!user) return;
+    if (linixRoles.length === 0) {
+      setLoading(true);
+      try {
+        const newUsers = await getRoles();
+        setLinixRoles(newUsers);
+      } catch (error) {
+        console.info(error);
+      } finally {
         setLoading(false);
-      });
-  }, [linixRoles]);
+      }
+    }
+  };
+  useEffect(() => {
+    linixRolesData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
+  // useEffect(() => {
+  //   getAll("linix-roles")
+  //     .then((data) => {
+  //       if (data !== null) {
+  //         setLinixRoles(data as IRol[]);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error(error.message);
+  //     })
+  //     .finally(() => {
+  //       setLoading(false);
+  //     });
+  // }, [linixRoles]);
 
   useEffect(() => {
     const filterRecordRemoved = linixRoles.filter(

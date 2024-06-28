@@ -50,7 +50,6 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
     handleCloseMenuInvitation,
     menuOptions,
     isAssignAll,
-    readOnly,
   } = props;
 
   const smallScreen = useMediaQuery("(max-width: 650px)");
@@ -62,35 +61,12 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
   );
   const dataValidations = entries.length === 0;
 
-  if (readOnly) {
-    return (
-      <>
-        <StyledEntriesContainer>
-          <Stack
-            direction="column"
-            gap={inube.spacing.s200}
-            margin={readOnly ? "s0" : "s0 s400"}
-          >
-            {filteredRows.map((entry) => (
-              <Stack alignItems="center" key={entry.id}>
-                <Switch
-                  id={entry.id}
-                  label={`${entry.id} - ${entry.value}`}
-                  checked={entry.isActive}
-                  onChange={() => handleToggleEntry(entry.id)}
-                  size="large"
-                  disabled
-                />
-              </Stack>
-            ))}
-          </Stack>
-        </StyledEntriesContainer>
-      </>
-    );
-  }
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
 
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSubmit}>
       <Fieldset title={title}>
         <Stack direction="column" gap={inube.spacing.s400}>
           <Grid
@@ -105,9 +81,12 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
               name="search"
               id="search"
               size="compact"
-              onChange={handleFilter}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleFilter(e)
+              }
               value={filter}
               fullwidth
+              disabled={dataValidations}
             />
             {smallScreen ? (
               <StyledOptionsContainer>
@@ -131,14 +110,16 @@ function AssignmentFormUI(props: AssignmentFormUIProps) {
                 <Button
                   spacing="compact"
                   onClick={() => handleToggleAllEntries(false)}
-                  disabled={!entries.some((entry) => entry.isActive)}
+                  disabled={
+                    !entries.some((entry) => entry.isActive) || dataValidations
+                  }
                 >
                   Desasignar todos
                 </Button>
                 <Button
                   spacing="compact"
                   onClick={() => handleToggleAllEntries(true)}
-                  disabled={isAssignAll}
+                  disabled={isAssignAll || dataValidations}
                 >
                   Asignar todos
                 </Button>
