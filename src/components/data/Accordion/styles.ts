@@ -1,18 +1,18 @@
+import { inube } from "@inubekit/foundations";
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
 
 export const StyledContainer = styled.div`
   display: flex;
-  padding: ${inube.spacing.s150} ${inube.spacing.s200};
+  padding: 12px 16px;
   flex-direction: column;
-  gap: ${inube.spacing.s200};
+  gap: 16px;
   border-radius: 8px;
   box-sizing: border-box;
   align-items: stretch;
   width: 100%;
   border: 1px solid
     ${({ theme }) =>
-      theme.color?.stroke?.gray?.regular || inube.color.stroke.gray.regular};
+      theme.color?.stroke?.gray?.regular || inube.palette.neutral.N200};
 `;
 
 export const StyledHead = styled.div`

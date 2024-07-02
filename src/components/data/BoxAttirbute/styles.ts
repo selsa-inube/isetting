@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { inube } from "@inube/design-system";
+import { inube } from "@inubekit/foundations";
 
 export const StyledBoxAttribute = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const StyledBoxAttribute = styled.div`
   justify-content: space-between;
   align-items: center;
   border-radius: 8px;
-  padding: ${inube.spacing.s075} ${inube.spacing.s200};
+  padding: 6px 16px;
   background-color: ${({ theme }) =>
-    theme?.color?.surface?.gray?.clear || inube.color.surface.gray.clear};
+    theme?.color?.surface?.gray?.clear || inube.palette.neutral.N10};
 `;

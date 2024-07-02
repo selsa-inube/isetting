@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { MdClear } from "react-icons/md";
-import {
-  Blanket,
-  Button,
-  Icon,
-  Stack,
-  Text,
-  useMediaQuery,
-} from "@inube/design-system";
+
+import { Stack } from "@inubekit/stack";
+import { Text } from "@inubekit/text";
+import { Blanket } from "@inubekit/blanket";
+import { Icon } from "@inubekit/icon";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Button } from "@inubekit/button";
 
 import { TextAppearance } from "@pages/people/outlets/color/texts/types";
 
@@ -32,7 +31,6 @@ function DecisionModal(props: DecisionModalProps) {
     loading = true,
     closeModal,
     handleClick,
-    appearance = "primary",
   } = props;
   const [isLoading, setIsLoading] = useState(false);
 
@@ -60,7 +58,7 @@ function DecisionModal(props: DecisionModalProps) {
         <Stack
           direction="column"
           gap={smallScreen ? "16px" : "24px"}
-          padding={smallScreen ? "s300" : "s400"}
+          padding={smallScreen ? "24px" : "36px"}
         >
           <Stack alignItems="center" justifyContent="space-between">
             <Text type="title" size={smallScreen ? "small" : "large"}>
@@ -85,7 +83,6 @@ function DecisionModal(props: DecisionModalProps) {
               Cancel
             </Button>
             <Button
-              appearance={appearance}
               loading={isLoading}
               onClick={handleConfirmationClick}
               spacing={smallScreen ? "compact" : undefined}

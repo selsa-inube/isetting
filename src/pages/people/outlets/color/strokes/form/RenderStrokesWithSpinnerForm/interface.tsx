@@ -7,6 +7,7 @@ import {
   Text,
   useMediaQuery,
 } from "@inube/design-system";
+import { inube as newInube } from "@inubekit/foundations";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
 import { ThemeProvider } from "styled-components";
@@ -71,7 +72,7 @@ function RenderStrokesWithSpinnerFormUI(
         handleReset={handleReset}
         loading={isLoading}
       >
-        <ThemeProvider theme={updatedTheme}>
+        <ThemeProvider theme={{ ...newInube.text, ...newInube.typography }}>
           <Stack direction="column" gap={inube.spacing.s350}>
             <Grid
               templateColumns={templateColumns}

@@ -55,7 +55,7 @@ export function EditPositionUI(props: EditPositionUIProps) {
   } = editData;
 
   return (
-    <StyledContainer smallScreen={smallScreen}>
+    <StyledContainer $smallScreen={smallScreen}>
       <Stack gap={inube.spacing.s600} direction="column">
         <Stack gap={inube.spacing.s200} direction="column">
           <Breadcrumbs crumbs={editPositionConfig[0].crumbs} />

@@ -1,4 +1,4 @@
-import { inube } from "@inube/design-system";
+import { inube } from "@inubekit/foundations";
 import styled from "styled-components";
 
 interface IStyledModal {
@@ -6,12 +6,12 @@ interface IStyledModal {
 }
 
 const StyledModal = styled.div<IStyledModal>`
-  background-color: ${inube.color.surface.light.clear};
+  background-color: ${inube.palette.neutral.N0};
   min-width: ${(props) => (props.$smallScreen ? "300px" : "400px")};
   max-width: ${(props) => (props.$smallScreen ? "328px" : "500px")};
   height: auto;
-  border-radius: ${({ theme }) => theme?.spacing?.s100 || inube.spacing.s100};
-  margin: ${({ theme }) => theme?.spacing?.s200 || inube.spacing.s200};
+  border-radius: 8px;
+  margin: 16px;
 `;
 
 export { StyledModal };

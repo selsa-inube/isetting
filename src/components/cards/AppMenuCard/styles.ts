@@ -1,24 +1,23 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { inube } from "@inube/design-system";
+import { inube } from "@inubekit/foundations";
 
 const StyledAppMenuCard = styled(Link)`
   box-sizing: border-box;
-  padding: ${({ theme }) => theme?.spacing?.s200 || inube.spacing.s200};
+  padding: 16px 12px;
   width: 191px;
   height: 140px;
   text-decoration: none;
   color: ${({ theme }) =>
-    theme?.color?.stroke.dark.regular || inube.color.stroke.dark.regular};
+    theme?.color?.stroke.dark.regular || inube.palette.neutral.N900};
   :hover {
     & svg {
       color: ${({ theme }) =>
-        theme?.color?.stroke.primary.regular ||
-        inube.color.stroke.primary.regular};
+        theme?.color?.stroke.primary.regular || inube.palette.blue.B400};
     }
     & picture {
       background-color: ${({ theme }) =>
-        theme?.color?.surface.gray.regular || inube.color.surface.gray.regular};
+        theme?.color?.surface.gray.regular || inube.palette.neutral.N30};
     }
   }
 
@@ -26,9 +25,7 @@ const StyledAppMenuCard = styled(Link)`
     display: flex;
     width: 100%;
     height: 72px;
-    padding: ${({ theme }) =>
-      `${theme?.spacing?.s200} ${theme?.spacing?.s100}` ||
-      `${inube.spacing.s200} ${inube.spacing.s100}`};
+    padding: 12px 8px;
     & div:first-child {
       flex-direction: row;
       gap: 8px;

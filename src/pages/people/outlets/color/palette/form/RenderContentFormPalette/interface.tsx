@@ -1,6 +1,6 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { inube, Text, useMediaQueries } from "@inube/design-system";
-
+import { inube as newInube } from "@inubekit/foundations";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { ThemeProvider } from "styled-components";
 import { RenderCategoryGrid } from "@components/layout/RenderCategoryGrid";
@@ -66,7 +66,9 @@ function RenderContentFormPaletteUI(props: RenderContentFormPaletteUIProps) {
         handleReset={handleReset}
         loading={isLoading}
       >
-        <ThemeProvider theme={updatedTheme}>
+        <ThemeProvider
+          theme={{ updatedTheme, ...newInube.text, ...newInube.typography }}
+        >
           <RenderCategoryGrid
             templateColumns={
               formType === "neutral" || formType === "neutralAlpha"

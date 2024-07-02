@@ -1,5 +1,6 @@
-import { RadioClient, RadioClientProps } from "./index";
 import { clientsDataMock } from "@mocks/login/clients.mock";
+
+import { RadioClient, RadioClientProps } from "./index";
 
 const story = {
   components: [RadioClient],

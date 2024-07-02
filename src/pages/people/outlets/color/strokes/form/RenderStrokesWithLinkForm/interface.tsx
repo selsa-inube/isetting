@@ -1,5 +1,6 @@
 import { FormButtons } from "@components/forms/submit/FormButtons";
 import { inube, Stack, Text, Label } from "@inube/design-system";
+import { inube as newInube } from "@inubekit/foundations";
 import { StyledLinkContainer } from "./styles";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
@@ -60,7 +61,7 @@ function RenderStrokesWithLinkFormUI(props: RenderStrokesWithLinkFormUIProps) {
         handleReset={handleReset}
         loading={isLoading}
       >
-        <ThemeProvider theme={updatedTheme}>
+        <ThemeProvider theme={{ ...newInube.text, ...newInube.typography }}>
           <Stack direction="column" gap={inube.spacing.s350}>
             {strokesCards.map(([key, config]: any) => (
               <FieldsetColorCard

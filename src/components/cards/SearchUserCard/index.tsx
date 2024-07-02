@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { MdSearch } from "react-icons/md";
-import { Textfield, useMediaQuery } from "@inube/design-system";
 
+import { Textfield } from "@inube/design-system";
 import { InteractiveModal } from "@components/feedback/InteractiveModal";
+import { useMediaQuery } from "@inubekit/hooks";
 
 import { ILabel } from "./types";
 import { StyledSearchUserCard } from "./styles";
+
 interface SearchUserCardProps {
   id: string;
   label: string;

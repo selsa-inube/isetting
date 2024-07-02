@@ -1,6 +1,12 @@
-import { Stack, Text, useMediaQuery, Icon, Grid } from "@inube/design-system";
 import { useState } from "react";
 import { MdClear } from "react-icons/md";
+
+import { Stack } from "@inubekit/stack";
+import { Text } from "@inubekit/text";
+import { useMediaQuery } from "@inubekit/hooks";
+import { Icon } from "@inubekit/icon";
+import { Grid } from "@inubekit/grid";
+
 import { StyledSubjectSearchCard, StyledSubjectSearchCardText } from "./styles";
 
 interface SubjectSearchCardProps {
@@ -35,7 +41,7 @@ function SubjectSearchCard(props: SubjectSearchCardProps) {
             </Stack>
           </StyledSubjectSearchCardText>
           {closeIcon && (
-            <Stack justifyContent="end" padding="s100 s200 s0 s0">
+            <Stack justifyContent="end" padding="8px 16px 0px 0px">
               <Icon
                 icon={<MdClear />}
                 appearance="dark"

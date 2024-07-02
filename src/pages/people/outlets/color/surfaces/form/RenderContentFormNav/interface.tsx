@@ -7,6 +7,7 @@ import {
   Grid,
   useMediaQueries,
 } from "@inube/design-system";
+import { inube as newInube } from "@inubekit/foundations";
 import { StyledContainerNav, StyledNav } from "./styles";
 import { IMessageState } from "@pages/privileges/outlets/users/types/forms.types";
 import { FieldsetColorCard } from "@components/cards/FieldsetColorCard";
@@ -85,7 +86,7 @@ function RenderContentFormSurfaceNavUI(
         handleReset={handleReset}
         loading={isLoading}
       >
-        <ThemeProvider theme={updatedTheme}>
+        <ThemeProvider theme={{ ...newInube.text, ...newInube.typography }}>
           <Stack gap={inube.spacing.s350} direction={flexDirection}>
             <StyledNav $smallScreen={isSmallScreen}>
               <Nav navigation={mockNav} logoutTitle="Logout" />
